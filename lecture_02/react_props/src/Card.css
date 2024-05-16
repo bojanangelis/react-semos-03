@@ -1,0 +1,9 @@
+.card--component {
+  border: 1px solid lightgray;
+  padding: 20px;
+}
+
+.card--img {
+  width: 200px;
+  border-radius: 20px;
+}
