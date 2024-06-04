@@ -23,7 +23,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           element={<ProtectedRoute />}
           children={<Route path='/' element={<HomePage />} />}
         />
-
         <Route path='/login' element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
