@@ -1,22 +1,25 @@
+import { SignInButton, useAuth, UserButton } from '@clerk/clerk-react'
 import { MagnifyingGlassIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
+  const { userId } = useAuth()
+
   const basket = useSelector((store) => store.basket.items)
 
   return (
     <header>
       <div className='flex items-center bg-[#131921]'>
-        <div className='m-2 pr-4 flex items-center flex-grow'>
+        <Link to='/' className='m-2 pr-4 flex items-center flex-grow'>
           <img
             width={150}
             height={150}
             src='https://cdn.logojoy.com/wp-content/uploads/20230629132639/current-logo-600x338.png'
             alt='logo'
           />
-        </div>
+        </Link>
         <div className='hidden sm:flex items-center h-10 rounded-lg flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500'>
           <input
             className='p-2 outline-none h-full w-6 flex-grow rounded-md'
@@ -27,9 +30,15 @@ const Header = () => {
         </div>
         <div className='text-white flex items-center text-sm space-x-6 mx-6 whitespace-nowrap cursor-pointer'>
           <div className='link'>
-            <button className='hover:underline flex flex-col underline-offset-2'>
-              Hello, sign in <span>Account & list</span>
-            </button>
+            {userId ? (
+              <UserButton />
+            ) : (
+              <SignInButton>
+                <button className='hover:underline flex flex-col underline-offset-2'>
+                  Hello, sign in <span>Account & list</span>
+                </button>
+              </SignInButton>
+            )}
           </div>
           <div className='link'>
             <p>Returns</p>
